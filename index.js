@@ -26,10 +26,11 @@ function isItemLocalStored(key) {
 }
 function getLocalStoredItem(itemKey){
     try {
+        if (!itemKey) throw new Error('Achtung! Schlüssel nicht angegeben!!')
         return JSON.parse(localStorage.getItem(itemKey));
     }
     catch (e) {
-        console.error('Enter item key!')
+        console.error(e.message)
     }
 }
 function setItemToLocalStorage(key,data){
