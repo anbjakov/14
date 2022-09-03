@@ -1,7 +1,6 @@
 'use strict'
 const API_URL = 'https://jsonplaceholder.typicode.com/users/1';
 const itemKey = 'userData';
-
 if (isItemLocalStored(itemKey)) {
     console.log(getLocalStoredItem(itemKey));
 } else {
@@ -34,8 +33,16 @@ function getLocalStoredItem(itemKey){
     }
 }
 function setItemToLocalStorage(key,data){
-    if (data){
+    try{
+        if (key && data){
         localStorage.setItem(key, JSON.stringify(data))
+    }
+        else {
+            throw new Error('Expected local storage key and data ')
+        }
+    }
+    catch (e) {
+        console.error(e.message);
     }
 }
 
@@ -70,3 +77,4 @@ let isAfter = (begin,end)=> {
 console.log(isAfter(new Date(1989, 6, 10), new Date(1987, 1, 11))); // true
 console.log(isAfter(1648636135000, 1648549735000)); // true
 console.log(isAfter(1648549735000, 1648636135000)); // false
+
