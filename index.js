@@ -21,7 +21,7 @@ async function makeApiRequest(API_URL){
 }
 
 function isItemLocalStored(key) {
-    return isNaN(localStorage.getItem(key))
+        return localStorage.getItem(key) !== null
 }
 function getLocalStoredItem(itemKey){
     try {
